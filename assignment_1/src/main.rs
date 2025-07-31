@@ -65,8 +65,7 @@ println!();
     let mut guesses = 0;
 
     loop {
-        // Simulated user guess (replace with different values to test)
-        let guess = 40 + guesses; // just an example increasing guess
+        let guess = 40 + guesses;
 
         guesses += 1;
 
