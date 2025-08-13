@@ -1,0 +1,9 @@
+[package]
+name = "data_fetch"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+serde = { version = "1.0", features = ["derive"] }
+ureq = "2"         # for HTTP requests
+serde_json = "1"
