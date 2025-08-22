@@ -9,7 +9,7 @@ struct Config {
     worker_threads: usize,
     timeout: Duration,
     max_retries: usize,
-    interval_secs: u64, // for periodic monitoring
+    interval_secs: u64,
 }
 
 #[derive(Debug, Clone)]
@@ -38,10 +38,8 @@ fn check_website(client: &Client, url: String, cfg: &Config, tx: Sender<WebsiteS
                 response_time = start.elapsed();
                 let code = resp.status().as_u16();
 
-                // SSL check: if HTTPS, connection worked = valid
                 ssl_valid = Some(url.starts_with("https://"));
 
-                // Body validation: does it contain "html"?
                 let text = resp.text().unwrap_or_default();
                 body_contains = Some(text.contains("html"));
 
@@ -90,7 +88,7 @@ fn monitor_once(urls: Vec<String>, cfg: &Config) -> Vec<WebsiteStatus> {
         handles.push(handle);
     }
 
-    drop(tx); // close sender
+    drop(tx);
     let mut results = vec![];
     for received in rx {
         results.push(received);
@@ -108,12 +106,10 @@ fn periodic_monitoring(urls: Vec<String>, cfg: Config) {
         println!("--- Monitoring cycle at {} ---", Utc::now());
         let results = monitor_once(urls.clone(), &cfg);
 
-        // Print results
         for r in &results {
             println!("{:?}", r);
         }
 
-        // Statistics
         let successes: Vec<_> = results.iter().filter(|r| r.status.is_ok()).collect();
         if !successes.is_empty() {
             let avg_time: Duration = successes.iter().map(|r| r.response_time).sum::<Duration>()
@@ -135,7 +131,7 @@ fn main() {
         worker_threads: 10,
         timeout: Duration::from_secs(5),
         max_retries: 1,
-        interval_secs: 15, // run every 15 seconds
+        interval_secs: 15,
     };
 
     let urls = vec![
