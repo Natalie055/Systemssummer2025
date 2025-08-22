@@ -1,0 +1,11 @@
+/workspaces/Systemssummer2025/website_checker/target/release/deps/ctrlc-b3309ce452ee7e65.d: /home/codespace/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ctrlc-3.4.7/src/lib.rs /home/codespace/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ctrlc-3.4.7/src/error.rs /home/codespace/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ctrlc-3.4.7/src/platform/mod.rs /home/codespace/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ctrlc-3.4.7/src/platform/unix/mod.rs /home/codespace/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ctrlc-3.4.7/src/signal.rs
+
+/workspaces/Systemssummer2025/website_checker/target/release/deps/libctrlc-b3309ce452ee7e65.rlib: /home/codespace/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ctrlc-3.4.7/src/lib.rs /home/codespace/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ctrlc-3.4.7/src/error.rs /home/codespace/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ctrlc-3.4.7/src/platform/mod.rs /home/codespace/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ctrlc-3.4.7/src/platform/unix/mod.rs /home/codespace/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ctrlc-3.4.7/src/signal.rs
+
+/workspaces/Systemssummer2025/website_checker/target/release/deps/libctrlc-b3309ce452ee7e65.rmeta: /home/codespace/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ctrlc-3.4.7/src/lib.rs /home/codespace/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ctrlc-3.4.7/src/error.rs /home/codespace/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ctrlc-3.4.7/src/platform/mod.rs /home/codespace/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ctrlc-3.4.7/src/platform/unix/mod.rs /home/codespace/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ctrlc-3.4.7/src/signal.rs
+
+/home/codespace/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ctrlc-3.4.7/src/lib.rs:
+/home/codespace/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ctrlc-3.4.7/src/error.rs:
+/home/codespace/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ctrlc-3.4.7/src/platform/mod.rs:
+/home/codespace/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ctrlc-3.4.7/src/platform/unix/mod.rs:
+/home/codespace/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ctrlc-3.4.7/src/signal.rs:

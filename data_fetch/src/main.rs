@@ -7,28 +7,6 @@ trait Pricing {
 }
 
 #[derive(Debug, Deserialize)]
-struct CoinGeckoPrice {
-    #[serde(rename = "usd")]
-    usd: f64,
-}
-
-#[derive(Debug, Deserialize)]
-struct CoinGeckoResponse {
-    bitcoin: Option<CoinGeckoPrice>,
-    ethereum: Option<CoinGeckoPrice>,
-}
-
-#[derive(Debug)]
-struct Bitcoin {
-    price: Option<f64>,
-}
-
-#[derive(Debug)]
-struct Ethereum {
-    price: Option<f64>,
-}
-
-#[derive(Debug, Deserialize)]
 struct SP500Api {
     chart: Chart,
 }
@@ -50,24 +28,32 @@ struct Meta {
 }
 
 #[derive(Debug)]
+struct Bitcoin {
+    price: Option<f64>,
+}
+
+#[derive(Debug)]
+struct Ethereum {
+    price: Option<f64>,
+}
+
+#[derive(Debug)]
 struct SP500 {
     price: Option<f64>,
 }
 
 fn fetch_json<T: for<'de> Deserialize<'de>>(url: &str) -> Result<T, Box<dyn std::error::Error>> {
-    let response = ureq::get(url).call()?;
-    let body = response.into_string()?;
+    let body = ureq::get(url).call()?.into_string()?;
     let parsed = serde_json::from_str(&body)?;
     Ok(parsed)
 }
 
 impl Pricing for Bitcoin {
     fn fetch_price(&mut self) -> Result<(), Box<dyn std::error::Error>> {
-        let resp: CoinGeckoResponse = fetch_json("https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd")?;
-        if let Some(bitcoin_price) = resp.bitcoin {
-            self.price = Some(bitcoin_price.usd);
-        } else {
-            return Err("Bitcoin price missing in response".into());
+        // Yahoo ticker for Bitcoin in USD
+        let resp: SP500Api = fetch_json("https://query2.finance.yahoo.com/v8/finance/chart/BTC-USD")?;
+        if let Some(first) = resp.chart.result.first() {
+            self.price = Some(first.meta.regular_market_price);
         }
         Ok(())
     }
@@ -78,7 +64,7 @@ impl Pricing for Bitcoin {
                 .append(true)
                 .create(true)
                 .open("bitcoin.txt")?;
-            writeln!(file, "{:.2}", price)?;
+            writeln!(file, "{}", price)?;
         }
         Ok(())
     }
@@ -86,11 +72,10 @@ impl Pricing for Bitcoin {
 
 impl Pricing for Ethereum {
     fn fetch_price(&mut self) -> Result<(), Box<dyn std::error::Error>> {
-        let resp: CoinGeckoResponse = fetch_json("https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=usd")?;
-        if let Some(eth_price) = resp.ethereum {
-            self.price = Some(eth_price.usd);
-        } else {
-            return Err("Ethereum price missing in response".into());
+        // Yahoo ticker for Ethereum in USD
+        let resp: SP500Api = fetch_json("https://query2.finance.yahoo.com/v8/finance/chart/ETH-USD")?;
+        if let Some(first) = resp.chart.result.first() {
+            self.price = Some(first.meta.regular_market_price);
         }
         Ok(())
     }
@@ -101,7 +86,7 @@ impl Pricing for Ethereum {
                 .append(true)
                 .create(true)
                 .open("ethereum.txt")?;
-            writeln!(file, "{:.2}", price)?;
+            writeln!(file, "{}", price)?;
         }
         Ok(())
     }
@@ -109,6 +94,7 @@ impl Pricing for Ethereum {
 
 impl Pricing for SP500 {
     fn fetch_price(&mut self) -> Result<(), Box<dyn std::error::Error>> {
+        // Yahoo ticker for S&P 500
         let resp: SP500Api = fetch_json("https://query2.finance.yahoo.com/v8/finance/chart/%5EGSPC")?;
         if let Some(first) = resp.chart.result.first() {
             self.price = Some(first.meta.regular_market_price);
@@ -122,7 +108,7 @@ impl Pricing for SP500 {
                 .append(true)
                 .create(true)
                 .open("sp500.txt")?;
-            writeln!(file, "{:.2}", price)?;
+            writeln!(file, "{}", price)?;
         }
         Ok(())
     }

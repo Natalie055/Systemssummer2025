@@ -1,0 +1,5 @@
+/workspaces/Systemssummer2025/website_checker/target/debug/deps/sct-9a57ef0e9b62dda5.d: /home/codespace/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/sct-0.7.1/src/lib.rs
+
+/workspaces/Systemssummer2025/website_checker/target/debug/deps/libsct-9a57ef0e9b62dda5.rmeta: /home/codespace/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/sct-0.7.1/src/lib.rs
+
+/home/codespace/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/sct-0.7.1/src/lib.rs:
